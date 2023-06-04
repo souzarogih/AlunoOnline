@@ -1,5 +1,6 @@
 package com.alunoonline.api.controller;
 
+import com.alunoonline.api.model.Student;
 import com.alunoonline.api.model.Teacher;
 import com.alunoonline.api.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,5 +28,26 @@ public class TeacherController {
     @ResponseStatus(HttpStatus.OK)
     public List<Teacher> listAll() {
         return teacherService.listAll();
+    }
+
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<Teacher> findById(@PathVariable Long id) {
+        Teacher teacher = teacherService.findById(id);
+        return ResponseEntity.ok(teacher);
+    }
+
+    @GetMapping("/name/{name}")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<Teacher> findByName(@PathVariable String name) {
+        Teacher teacher = teacherService.findByName(name);
+        return ResponseEntity.ok(teacher);
+    }
+
+    @GetMapping("/email/{email}")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<Teacher> findByEmail(@PathVariable String email) {
+        Teacher teacher = teacherService.findByEmail(email);
+        return ResponseEntity.ok(teacher);
     }
 }
