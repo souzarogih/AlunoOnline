@@ -3,10 +3,13 @@ package com.alunoonline.api.controller;
 import com.alunoonline.api.model.StudentHistory;
 import com.alunoonline.api.service.StudentHistoryService;
 import com.alunoonline.api.service.StudentService;
+import org.aspectj.weaver.ast.Literal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/student-history")
@@ -26,6 +29,12 @@ public class StudentHistoryController {
     @GetMapping("/{id}")
     public ResponseEntity<StudentHistory> consultStudentHistory(@PathVariable String id) {
         StudentHistory savedStudentHistory = studentHistoryService.consultStudentHistoryById(id);
+        return ResponseEntity.ok(savedStudentHistory);
+    }
+
+    @GetMapping("/student/{student_id}")
+    public ResponseEntity<List<StudentHistory>> consultStudentId(@PathVariable String student_id) {
+        List<StudentHistory> savedStudentHistory = studentHistoryService.consultStudentHistoryByStudentId(student_id);
         return ResponseEntity.ok(savedStudentHistory);
     }
 }

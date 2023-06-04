@@ -14,8 +14,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class StudentHistory {
     @Id
     private String id;
-    private String student_name;
-    private String student_id;
-    private String history_type;
+    private String studentName;
+    private String studentId;
+    private String historyType;
 
 }
