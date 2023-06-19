@@ -35,4 +35,8 @@ public class StudentService {
         Student student_obj = studentRepository.findByEmail(email);
         return student_obj;
     }
+
+    public void deleteById (Long id) {
+        studentRepository.deleteById(id);
+    }
 }

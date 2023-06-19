@@ -46,9 +46,15 @@ public class StudentController {
     }
 
     @GetMapping("/email/{email}")
-    @ResponseStatus(HttpStatus.OK)
+//    @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Student> findByEmail(@PathVariable String email) {
         Student student = studentService.findByEmail(email);
         return ResponseEntity.ok(student);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteById(@PathVariable Long id) {
+        studentService.deleteById(id);
     }
 }
