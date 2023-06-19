@@ -10,9 +10,9 @@ import org.springframework.data.redis.core.RedisHash;
 @AllArgsConstructor
 @Data
 @RedisHash("contentClasses")
-public class ContentClasses {
+public class ContentClass {
 
     @Id
-    private String key;
+    private String id;
     private String value;
 }

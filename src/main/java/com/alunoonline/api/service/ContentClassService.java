@@ -1,24 +1,23 @@
 package com.alunoonline.api.service;
 
 
-import com.alunoonline.api.model.ContentClasses;
-import com.alunoonline.api.repository.ContentClassesRepository;
+import com.alunoonline.api.model.ContentClass;
+import com.alunoonline.api.repository.ContentClassRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ContentClassesService {
+public class ContentClassService {
 
     @Autowired
-    ContentClassesRepository contentClassesRepository;
+    ContentClassRepository contentClassRepository;
 
-    public void saveData(ContentClasses content_classes) {
-        contentClassesRepository.save(content_classes);
+    public void saveData(ContentClass content_class) {
+        contentClassRepository.save(content_class);
     }
 
-    public ContentClasses findById(String id) {
-        return contentClassesRepository.findById(id).orElse(null);
+    public ContentClass findById(String id) {
+        return contentClassRepository.findById(id).orElse(null);
     }
 
 }
