@@ -19,6 +19,8 @@ public class EnrollmentStudent implements Serializable {
     private Long id;
     private Double note_one;
     private Double note_two;
+
+    @Enumerated(EnumType.STRING)
     private StudentStatus status;
 
     @ManyToOne
