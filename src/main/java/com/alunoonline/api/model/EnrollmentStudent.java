@@ -12,7 +12,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Data
 @Entity
-public class StudentEnrollment implements Serializable {
+public class EnrollmentStudent implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
