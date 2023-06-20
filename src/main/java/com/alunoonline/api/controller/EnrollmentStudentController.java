@@ -40,4 +40,17 @@ public class EnrollmentStudentController {
         EnrollmentStudent enrollment_student_obj = enrollmentStudentService.findByIdStudentEnrollment(id);
         return ResponseEntity.ok(enrollment_student_obj);
     }
+
+    /**
+     * Recurso que retorna a lista de disciplinas que está matriculada para o aluno.
+     * @param id
+     * @return
+     */
+    @GetMapping("/student/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<List<EnrollmentStudent>> findByStudentId(@PathVariable Long id) {
+        log.warn("EnrollmentStudentController.findByStudentId | Obtendo uma lista de disciplinas matriculada para um aluno pelo ID {}", id);
+        List<EnrollmentStudent> enrollment_student_obj = enrollmentStudentService.findByStudentEnrollmentStudentId(id);
+        return ResponseEntity.ok(enrollment_student_obj);
+    }
 }

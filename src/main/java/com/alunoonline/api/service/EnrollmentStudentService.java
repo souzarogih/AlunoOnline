@@ -2,7 +2,6 @@ package com.alunoonline.api.service;
 
 import com.alunoonline.api.enums.StudentStatus;
 import com.alunoonline.api.model.EnrollmentStudent;
-import com.alunoonline.api.model.Student;
 import com.alunoonline.api.repository.EnrollmentStudentRepository;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,4 +32,11 @@ public class EnrollmentStudentService {
         EnrollmentStudent enrollment_student_obj = studentEnrollmentRepository.findById(id).orElse(null);
         return enrollment_student_obj;
     }
+
+    public List<EnrollmentStudent> findByStudentEnrollmentStudentId(Long id) {
+        log.warn("EnrollmentStudentService.findByStudentEnrollmentStudentId | Métodos para localizar as disciplinas matriculadas atualmente para um lojista");
+        List<EnrollmentStudent> enrollment_student_obj = studentEnrollmentRepository.findByStudentId(id);
+        return  enrollment_student_obj;
+    }
+
 }
