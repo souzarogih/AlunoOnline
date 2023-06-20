@@ -6,6 +6,8 @@ import com.alunoonline.api.repository.ContentClassRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ContentClassService {
 
@@ -18,6 +20,10 @@ public class ContentClassService {
 
     public ContentClass findById(String id) {
         return contentClassRepository.findById(id).orElse(null);
+    }
+
+    public Iterable<ContentClass> listContenteClass() {
+        return contentClassRepository.findAll();
     }
 
 }
