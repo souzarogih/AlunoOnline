@@ -35,7 +35,7 @@ public class EnrollmentStudentService {
 
     public List<EnrollmentStudent> findByStudentEnrollmentStudentId(Long id) {
         log.warn("EnrollmentStudentService.findByStudentEnrollmentStudentId | Métodos para localizar as disciplinas matriculadas atualmente para um lojista");
-        List<EnrollmentStudent> enrollment_student_obj = studentEnrollmentRepository.findByStudentId(id);
+        List<EnrollmentStudent> enrollment_student_obj = studentEnrollmentRepository.findEnrollmentStudentByStudentIdAndStatusAprovado(id);
         return  enrollment_student_obj;
     }
 
