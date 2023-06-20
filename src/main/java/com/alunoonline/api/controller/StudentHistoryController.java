@@ -37,4 +37,10 @@ public class StudentHistoryController {
         List<StudentHistory> savedStudentHistory = studentHistoryService.consultStudentHistoryByStudentId(student_id);
         return ResponseEntity.ok(savedStudentHistory);
     }
+
+    @GetMapping("/list-all")
+    public ResponseEntity<List<StudentHistory>> listAllsStudentHistory() {
+        List<StudentHistory> all_student_history_obj = studentHistoryService.listAllsStudentHistory();
+        return ResponseEntity.ok(all_student_history_obj);
+    }
 }

@@ -25,4 +25,8 @@ public class StudentHistoryService {
     public List<StudentHistory> consultStudentHistoryByStudentId(String student_id) {
         return studentHistoryRepository.findByStudentId(student_id);
     }
+
+    public List<StudentHistory> listAllsStudentHistory() {
+        return studentHistoryRepository.findAll();
+    }
 }
