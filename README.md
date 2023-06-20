@@ -1,11 +1,17 @@
 <p align="center">API REST com CRUD para serviço Aluno Online</p>
 
-## Aplicação API para gerenciamento escolar de matriculas, alunos e professores  
+<p align="center">
+    Aplicação API para gerenciamento escolar de matriculas, alunos e professores, este serviço está persistindo
+    dados em banco PostgreSQL, MongoSB e Redis, esses três tipos de persistência de dados foi escolhido para 
+    centralizar em um único projeto um CRUD básico com os 3 bancos muito utilizados no mercado. 
+</p>  
 
+### Tecnologias utilizadas neste projeto
 - [x] API REST
 - [x] SpringBoot
 - [x] PostgreSQL
 - [x] MongoDB
+- [x] Redis
 
 ### Endpoints
 
@@ -38,4 +44,8 @@ Endpoint para gerenciar as atividades processadas para um professor.
 |-------------|--|------------------------------------------------------------------|
 | GET         |`/teacher`| Endpoint principal para gerenciamento dos professores.           |
 
+#### Disciplinas
 
+#### Matrículas de estudantes em disciplinas
+
+#### Conteúdo de aula
