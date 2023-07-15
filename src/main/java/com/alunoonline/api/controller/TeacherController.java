@@ -4,6 +4,7 @@ import com.alunoonline.api.model.Student;
 import com.alunoonline.api.model.Teacher;
 import com.alunoonline.api.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -49,5 +50,12 @@ public class TeacherController {
     public ResponseEntity<Teacher> findByEmail(@PathVariable String email) {
         Teacher teacher = teacherService.findByEmail(email);
         return ResponseEntity.ok(teacher);
+    }
+
+    @GetMapping("/list")
+    public ResponseEntity<Page<Teacher>> listarProfessorPaginado(@RequestParam(defaultValue = "0") int page,
+                                                                 @RequestParam(defaultValue = "10") int size){
+
+        return ResponseEntity.ok(teacherService.listAllPag(page, size));
     }
 }

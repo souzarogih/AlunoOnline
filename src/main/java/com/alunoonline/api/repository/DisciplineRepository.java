@@ -9,4 +9,6 @@ import java.util.List;
 @Repository
 public interface DisciplineRepository extends JpaRepository<Discipline, Long> {
     List<Discipline> findByTeacherId(Long teacherId);
+
+//    List<Discipline> findDisciplineByNomeOrderBy(String nome);
 }

@@ -1,10 +1,14 @@
 package com.alunoonline.api.controller;
 
 import com.alunoonline.api.model.Student;
-import com.alunoonline.api.model.Teacher;
+import com.alunoonline.api.model.dtos.StudentDTO;
+import com.alunoonline.api.model.dtos.StudentNameCourseDto;
 import com.alunoonline.api.service.StudentService;
+import jakarta.validation.Valid;
 import lombok.extern.log4j.Log4j2;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,15 +23,18 @@ public class StudentController {
     @Autowired
     StudentService studentService;
 
+    @Autowired
+    ModelMapper modelMapper;
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Student> create(@RequestBody Student student) {
+    public ResponseEntity<StudentDTO> create(@RequestBody @Valid StudentDTO studentDTO) {
         log.warn("StudentController.create | Cadastrando novo aluno.");
-        Student createdStudent = studentService.create(student);
+        StudentDTO createdStudent = studentService.create(studentDTO);
         return ResponseEntity.status(201).body(createdStudent);
     }
 
-    @GetMapping("/list-all")
+    @GetMapping(value = "/list-all")
     @ResponseStatus(HttpStatus.OK)
     public List<Student> lis() {
         log.warn("StudentController.lis | Listando todos os alunos cadastrados na base de dados .");
@@ -63,5 +70,31 @@ public class StudentController {
     public void deleteById(@PathVariable Long id) {
         log.warn("StudentController.findByEmail | Removendo os dados de um aluno da base de dados.");
         studentService.deleteById(id);
+    }
+
+    @GetMapping("/nome/{nome}/email/{email}")
+    public ResponseEntity<Student> buscarPorNomeAndEmail(@PathVariable("nome") String nome,
+                                                       @PathVariable("email") String email) {
+        return ResponseEntity.ok(studentService.findByNomeAndEmail(nome, email));
+    }
+
+    @GetMapping("/email/find/{email}")
+    public ResponseEntity<List<Student>> buscarPorContemEmail(@PathVariable("email") String email) {
+        log.info("Passando em buscarPorContemEmail");
+        return ResponseEntity.ok(studentService.findByContemEmail(email));
+    }
+
+    @GetMapping("/list")
+    public ResponseEntity<Page<Student>> listarAlunoPaginado(@RequestParam(defaultValue = "0") int page,
+                                                             @RequestParam(defaultValue = "10") int size){
+        return ResponseEntity.ok(studentService.listAllPag(page, size));
+    }
+
+    @GetMapping("/course-name/{id}")
+    public ResponseEntity<StudentNameCourseDto> getNameCourseStudent(@PathVariable  long id){
+//        StudentNameCourseDto dto = new StudentNameCourseDto(studentService.findById(id));
+        StudentNameCourseDto studentNameCourseDto = studentService.buscarPorId(id);
+//        return ResponseEntity.ok(dto);
+        return ResponseEntity.ok(studentNameCourseDto);
     }
 }
